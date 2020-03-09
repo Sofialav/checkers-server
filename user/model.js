@@ -10,7 +10,7 @@ const User = db.define(
       unique: true
     },
     password: {
-      type: Sequilize.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     }
   },
@@ -18,3 +18,5 @@ const User = db.define(
     timestamps: false
   }
 );
+
+module.exports = User;
