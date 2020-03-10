@@ -13,6 +13,12 @@ router.post("/channels", async (request, response) => {
         .send({ message: "Please supply a name for the channel" });
     } else {
       const newChannel = await Channel.create(request.body);
+      // const action = {
+      //   type: "ADD_CHANNEL",
+      //   payload: newChannel
+      // };
+      stream.send(newChannel);
+
       return response.json(newChannel);
     }
   } catch (error) {
@@ -20,12 +26,6 @@ router.post("/channels", async (request, response) => {
       message: "This channel name is already in use"
     });
   }
-  // const action = {
-  //   type: "ADD_CHANNEL",
-  //   payload: name
-  // };
-
-  // stream.send(action);
 });
 
 module.exports = router;
