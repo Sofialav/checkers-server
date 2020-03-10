@@ -7,12 +7,12 @@ const router = Router();
 router.post("/channels", (request, response, next) => {
   response.send(request.body.name);
 
-  const action = {
-    type: "ADD_CHANNEL",
-    payload: name
-  };
+  // const action = {
+  //   type: "ADD_CHANNEL",
+  //   payload: name
+  // };
 
-  stream.send(action);
+  // stream.send(action);
 });
 
 module.exports = router;
