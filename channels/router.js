@@ -13,13 +13,12 @@ router.post("/channels", async (request, response) => {
         .send({ message: "Please supply a name for the channel" });
     } else {
       const newChannel = await Channel.create(request.body);
+      response.json(newChannel);
       // const action = {
       //   type: "ADD_CHANNEL",
       //   payload: newChannel
       // };
-      stream.send(newChannel);
-
-      return response.json(newChannel);
+      return stream.send(newChannel);
     }
   } catch (error) {
     response.status(400).send({

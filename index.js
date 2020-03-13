@@ -13,19 +13,19 @@ app.use(corsMiddleware);
 const bodyParser = express.json();
 app.use(bodyParser);
 
-app.use(userRouter);
-app.use(authRouter);
-app.use(channelRouter);
-
 app.get("/stream", async (req, res) => {
-  stream.init(req, res);
   const db = await Channel.findAll();
   const action = {
     type: "ALL_CHANNELS",
     payload: db
   };
   stream.updateInit(action);
+  stream.init(req, res);
 });
+
+app.use(userRouter);
+app.use(authRouter);
+app.use(channelRouter);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
